@@ -26,16 +26,16 @@ let map = L.map('mapid', {
 let baseMaps = {
   "Streets": streets,
   "Satellite": satelliteStreets,
-  "Tectonics": tectonicPlates
 };
 
 // 1. Add a 2nd layer group for the tectonic plate data.
 let allEarthquakes = new L.LayerGroup();
-
+let tectonicPlates = new L.LayerGroup();
 
 // 2. Add a reference to the tectonic plates group to the overlays object.
 let overlays = {
-  "Earthquakes": allEarthquakes
+  "Earthquakes": allEarthquakes,
+  "Tectonic Plates": tectonicPlates
 };
 
 // Then we add a control to the map that will allow the user to change which
@@ -148,7 +148,7 @@ legend.onAdd = function() {
     color: "ffffa1",
     weight: 2,
     onEachFeature: function(feature, layer) {
-      layer.bindPopup("<h3> Earthquakes: " + feature.properties.airline + "</h3> <hr><h3> Magnitude: "
+      layer.bindPopup("<h3> Earthquakes: " + feature.properties.coordinates + "</h3> <hr><h3> Magnitude: "
       +feature.properties.dst + "</h3>");
     }
   }).addTo(tectonicPlates);
